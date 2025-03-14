@@ -3,8 +3,8 @@ function show_file_txt($file): void
 {
     $file = fopen($file, "r");
     if ($file === false) {
-        echo "Unable to open file!";
-        exit;
+        echo "<h1>UNABLE TO OPEN FILE!</h1>";
+        return;
     }
 
     while (!feof($file)) {
@@ -15,5 +15,18 @@ function show_file_txt($file): void
     fclose($file);
 }
 
-$file = "res/text.txt";
-show_file_txt($file);
+$file = 'res/wea.txt';
+
+if (file_exists($file)) {
+    echo "El archivo existe. Intentando eliminar...";
+    if (unlink($file)) {
+        echo "El archivo ha sido eliminado.";
+    } else {
+        echo "No se pudo eliminar el archivo.";
+    }
+} else {
+    echo "El archivo NO existe según PHP.";
+}
+
+
+unlink('res/wea.txt') or die("<h1>UNABLE TO OPEN FILE!</h1>");
